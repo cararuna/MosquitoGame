@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+
+    <link rel="stylesheet" href="estilo.css" />
+    <script src="jogo.js"></script>
+  </head>
+  <body onresize="ajustaTamanhoPalcoJogo()">
+    <div class="painel">
+      <div class="vidas">
+        <img id="vida1" src="imagens/coracao_cheio.png" />
+        <img id="vida2" src="imagens/coracao_cheio.png" />
+        <img id="vida3" src="imagens/coracao_cheio.png" />
+      </div>
+
+      <div id="tempo" class="cronometro">Moscas matadas:</div>
+    </div>
+
+    <script>
+      setInterval(function () {
+        posicaoRandomica()
+      }, 2000)
+    </script>
+  </body>
+</html>
