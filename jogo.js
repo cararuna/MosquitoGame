@@ -9,23 +9,25 @@ function ajustaTamanhoPalcoJogo() {
 ajustaTamanhoPalcoJogo()
 
 function gameEasy() {
-  time = 2000
+  time = 1500
   var item = document.getElementsByClassName('menu')[0]
   item.remove()
+
   startGame()
 }
 
 function gameMedium() {
-  time = 1200
+  time = 1000
   var item = document.getElementsByClassName('menu')[0]
   item.remove()
   startGame()
 }
 
 function gameHard() {
-  time = 900
+  time = 800
   var item = document.getElementsByClassName('menu')[0]
   item.remove()
+
   startGame()
 }
 
@@ -33,8 +35,6 @@ var life = 3
 var contador = 0
 
 function posicaoRandomica() {
-  //remover o mosquito anterior (caso exista)
-
   if (document.getElementById('mosquito')) {
     document.getElementById('mosquito').remove()
     life--
@@ -59,13 +59,20 @@ function posicaoRandomica() {
   document.body.appendChild(mosquito)
 }
 
-addEventListener('click', function (e) {
-  if (e.target.id === mosquito.id) {
-    e.target.remove()
-    contador++
-    document.getElementById('tempo').innerHTML = 'Moscas matadas:' + contador
-  }
-})
+function retiraMosca() {
+  addEventListener('click', function (e) {
+    if (e.target.id === mosquito.id) {
+      e.target.remove()
+      contador++
+      document.getElementById('tempo').innerHTML = 'Moscas matadas:' + contador
+      if (contador === 20) {
+        setTimeout(function () {
+          gameOver('Parabéns, você venceu !')
+        }, 100)
+      }
+    }
+  })
+}
 
 function tamanhoAleatorio() {
   var classe = Math.floor(Math.random() * 3)
@@ -106,12 +113,14 @@ function atualizaVida() {
     lifeBar.src = 'imagens/coracao_vazio.png'
 
     setTimeout(function () {
-      gameOver()
+      musicaGameplay.stop()
+
+      gameOver('Game Over')
     }, 100)
   }
 }
 
-function gameOver() {
-  alert('Game Over')
+function gameOver(msg) {
+  alert(msg)
   window.location.reload()
 }
