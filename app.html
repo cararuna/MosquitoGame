@@ -7,6 +7,12 @@
     <script src="jogo.js"></script>
   </head>
   <body onresize="ajustaTamanhoPalcoJogo()">
+    <div class="menu">
+      <button onclick="gameEasy()" id="button" class="button">FÁCIL</button>
+      <button onclick="gameMedium()" id="button" class="button">MÉDIO</button>
+      <button onclick="gameHard()" id="button" class="button">DIFÍCIL</button>
+    </div>
+
     <div class="painel">
       <div class="vidas">
         <img id="vida1" src="imagens/coracao_cheio.png" />
@@ -18,9 +24,11 @@
     </div>
 
     <script>
-      setInterval(function () {
-        posicaoRandomica()
-      }, 2000)
+      function startGame() {
+        setInterval(function () {
+          posicaoRandomica()
+        }, time)
+      }
     </script>
   </body>
 </html>

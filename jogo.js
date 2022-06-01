@@ -8,6 +8,27 @@ function ajustaTamanhoPalcoJogo() {
 
 ajustaTamanhoPalcoJogo()
 
+function gameEasy() {
+  time = 2000
+  var item = document.getElementsByClassName('menu')[0]
+  item.remove()
+  startGame()
+}
+
+function gameMedium() {
+  time = 1200
+  var item = document.getElementsByClassName('menu')[0]
+  item.remove()
+  startGame()
+}
+
+function gameHard() {
+  time = 900
+  var item = document.getElementsByClassName('menu')[0]
+  item.remove()
+  startGame()
+}
+
 var life = 3
 var contador = 0
 
@@ -37,11 +58,11 @@ function posicaoRandomica() {
 
   document.body.appendChild(mosquito)
 }
+
 addEventListener('click', function (e) {
   if (e.target.id === mosquito.id) {
     e.target.remove()
     contador++
-    console.log(contador)
     document.getElementById('tempo').innerHTML = 'Moscas matadas:' + contador
   }
 })
