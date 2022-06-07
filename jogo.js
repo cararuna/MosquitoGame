@@ -8,6 +8,15 @@ function ajustaTamanhoPalcoJogo() {
 
 ajustaTamanhoPalcoJogo()
 
+function startGame() {
+  retiraMosca()
+
+  var test = setInterval(function () {
+    posicaoRandomica()
+    gameOverImg ? clearInterval(test) : null
+  }, time)
+}
+
 function gameEasy() {
   time = 1500
   var item = document.getElementsByClassName('menu')[0]
@@ -33,7 +42,6 @@ function gameHard() {
 
 var life = 3
 var contador = 0
-
 function posicaoRandomica() {
   if (document.getElementById('mosquito')) {
     document.getElementById('mosquito').remove()
@@ -55,7 +63,6 @@ function posicaoRandomica() {
   mosquito.style.top = posicaoY + 'px'
   mosquito.style.position = 'absolute'
   mosquito.id = 'mosquito'
-
   document.body.appendChild(mosquito)
 }
 
@@ -112,15 +119,43 @@ function atualizaVida() {
     var lifeBar = document.getElementById('vida1')
     lifeBar.src = 'imagens/coracao_vazio.png'
 
-    setTimeout(function () {
-      musicaGameplay.stop()
-
-      gameOver('Game Over')
-    }, 100)
+    gameOver('Game Over')
   }
 }
 
 function gameOver(msg) {
-  alert(msg)
-  window.location.reload()
+  if (msg === 'Game Over') {
+    /* var mosquitoInvisible = document.getElementById('mosquito')
+    console.log(mosquitoInvisible) */
+
+    var gameOverImg = document.createElement('img')
+    gameOverImg.src = 'imagens/game_over.png'
+    gameOverImg.className = 'gameOverImg'
+    gameOverImg.style.left = 100 + 'px'
+    gameOverImg.style.top = 100 + 'px'
+    gameOverImg.style.marginLeft = 40 + 'px'
+    gameOverImg.style.position = 'absolute'
+    gameOverImg.id = 'gameOverImg'
+    gameOverImg.style.height = 80 + '%'
+    gameOverImg.style.width = 80 + '%'
+    gameOverImg.style.scale = '(-1,1)'
+
+    document.body.appendChild(gameOverImg)
+    /* setInterval(alert('Game Over'), 3000) */
+  } else {
+    var gameOverImg = document.createElement('img')
+    gameOverImg.src = 'imagens/vitoria.png'
+    gameOverImg.className = 'gameOverImg'
+    gameOverImg.style.left = 100 + 'px'
+    gameOverImg.style.top = 100 + 'px'
+    gameOverImg.style.marginLeft = 40 + 'px'
+    gameOverImg.style.position = 'absolute'
+    gameOverImg.id = 'gameOverImg'
+    gameOverImg.style.height = 80 + '%'
+    gameOverImg.style.width = 80 + '%'
+    /* gameOverImg.style.scale = '(-1,1)' */
+
+    document.body.appendChild(gameOverImg)
+    /* clearInterval(test) */
+  }
 }
